@@ -23,9 +23,9 @@ interface RoiCalculatorProps {
 export default function RoiCalculator({ onBookWithRoi }: RoiCalculatorProps) {
   // Controlled inputs matching the exact fields of the HTML/user-snippet
   const [volume, setVolume] = useState<string>("1,000,000");
-  const [costPerGallon, setCostPerGallon] = useState<string>("1.08");
+  const [costPerGallon, setCostPerGallon] = useState<string>("0.97");
   const [concentration, setConcentration] = useState<string>("Baumé 20 @ 12 pH");
-  const [flowRate, setFlowRate] = useState<string>("3 GPM @ pH 10");
+  const [flowRate, setFlowRate] = useState<string>("3 GPM @ pH 12");
   const [showResults, setShowResults] = useState<boolean>(true);
 
   // Currency formatter

@@ -30,9 +30,9 @@ interface CalculatorModalProps {
 export default function CalculatorModal({ isOpen, onClose, onBookWithRoi }: CalculatorModalProps) {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [volume, setVolume] = useState<string>("1,000,000");
-  const [costPerGallon, setCostPerGallon] = useState<string>("1.08");
+  const [costPerGallon, setCostPerGallon] = useState<string>("0.97");
   const [concentration, setConcentration] = useState<string>("Baumé 20 @ 12 pH");
-  const [flowRate, setFlowRate] = useState<string>("3 GPM @ pH 10");
+  const [flowRate, setFlowRate] = useState<string>("3 GPM @ pH 12");
 
   // Sync theme with system settings or default to dark (matches industrial aesthetic)
   useEffect(() => {

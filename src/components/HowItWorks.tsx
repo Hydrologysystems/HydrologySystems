@@ -547,7 +547,7 @@ export default function HowItWorks() {
                 <div className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-2xl pointer-events-none" />
                 
                 <h3 className="font-sans font-black text-slate-800 text-[14px] leading-tight tracking-tight">
-                  Recyle<br/>
+                  Recycle<br/>
                   Waste<br/>
                   Stream
                 </h3>
@@ -730,9 +730,6 @@ export default function HowItWorks() {
                     }`}>
                       DISCHARGE DRAINAGE
                     </span>
-                    <span className="text-[8px] text-slate-400 font-mono font-bold uppercase tracking-wider">
-                      NEUTRALIZATION ZONE
-                    </span>
                   </div>
 
                   {/* 5. Fluid Water Fountain Splash Particle System exploding upwards from the drain holes */}
@@ -801,7 +798,7 @@ export default function HowItWorks() {
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                The Hydrology Process Platform transforms readily available site water into a high-purity neutralizing agent via our proprietary <strong className="text-white font-semibold">Hydroxide Catalyst Reactor (HCR)</strong> and <strong className="text-white font-semibold">Electrochemical Hydroxide Generator (EHG)</strong> Module. This closed-loop system provides precise, adjustable pH control (7-12) on demand, completely eliminating the need for hazardous bulk caustic deliveries.
+                The Hydrology Process Platform transforms readily available site water into a high-purity neutralizing agent via our proprietary <strong className="text-white font-semibold">Hydroxide Catalyst Reactor (HCR)</strong> and <strong className="text-white font-semibold">Electrochemical Hydroxide Generator (EHG)</strong> Module. This closed-loop system provides precise, adjustable pH control (7-12) on demand, completely eliminating the need for hazardous bulk caustic &amp; soda ash deliveries.
               </p>
             </div>
           </div>

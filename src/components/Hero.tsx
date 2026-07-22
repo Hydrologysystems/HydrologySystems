@@ -66,7 +66,7 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tight text-white max-w-5xl leading-[1.1] mb-6"
         >
-          CUT YOUR CAUSTIC SODA OPEX <br className="hidden sm:inline" />
+          CUT YOUR CAUSTIC SODA &amp; SODA ASH OPEX <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
             BY UP TO 70%.
           </span>
@@ -79,8 +79,7 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-lg sm:text-xl text-slate-300 max-w-3xl leading-relaxed mb-10 font-normal"
         >
-          Eliminate the logistics, safety risks, and multi-million dollar expense of purchased NaOH. 
-          Generate high-purity alkaline solutions on-demand directly at your plant.
+          Eliminate the logistics, safety risks, and multi-million dollar expense of purchased NaOH &amp; (Na₂CO₃). Generate high-purity alkaline solutions on-demand directly at your plant.
         </motion.p>
 
         {/* Call to Actions */}
@@ -95,7 +94,7 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
             onClick={onCalculateClick}
             className="group w-full sm:w-auto flex items-center justify-center space-x-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-base px-8 py-4.5 rounded-full shadow-xl shadow-orange-950/20 hover:shadow-orange-500/20 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
           >
-            <span>Calculate Your NaOH Savings</span>
+            <span>Calculate Your Savings</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
@@ -117,7 +116,7 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
             <div>
               <h3 className="text-white font-semibold text-base mb-1">Zero Chemical Handling</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Replaces hazards of bulk NaOH unloading and storage with safe, automated solid dissolution and metering.
+                Replaces hazards of bulk NaOH &amp; Soda Ash unloading and storage with safe, automated solid dissolution and metering.
               </p>
             </div>
           </div>

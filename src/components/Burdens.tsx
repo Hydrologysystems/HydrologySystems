@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const leftCardBg = "https://res.cloudinary.com/ew2ztpgz/image/upload/v1784142440/main_image_banner_good_and_bad_copy_ppshvj.png";
+const leftCardBg = "https://res.cloudinary.com/ew2ztpgz/image/upload/v1784733617/main_image_banner_good_and_bad_copy_1_hpsbbh.png";
 const rightCardBg = "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/section_2.2_ugstne";
 
 export default function Burdens() {

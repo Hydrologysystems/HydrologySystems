@@ -31,35 +31,35 @@ export default function Applications() {
     {
       id: "drilling",
       title: "Drilling",
-      subtitle: "Lithium Extraction, Onshore/Offshore",
-      desc: "Remote locations suffer heavily from chemical transport delay and high freight premiums. Hydrology Systems enables on-site, self-contained caustic mud stabilization and lithium ore pH modification, fully bypassing supply lines.",
+      subtitle: "Onshore & Offshore Drilling Operations",
+      desc: "Remote land rigs and offshore platforms face severe supply chain delays, high freight costs, and safety hazards from transporting liquid bulk caustic soda. Hydrology Systems’ on-site Alkaline Generator Skid technology generates high-purity NaOH (up to 12 pH) directly at the well-site. From critical mud stabilization and H2S sweetening to hardness precipitation and mineral/lithium extraction, our self-contained systems eliminate chemical logistics and deliver instant alkalinity control anywhere in the world.",
       icon: Drill,
       bgImage: drillingBg,
       accent: "from-blue-600/20 to-indigo-600/5"
     },
     {
       id: "food-beverage",
-      title: "Food & Beverage",
-      subtitle: "Food and Beverage Production",
-      desc: "Clean-In-Place systems consume significant volumes of caustic chemical for line sanitization. Generating high-purity neutralizing agents on-site reduces worker exposure hazards, chemical storage footprints, and regulatory overhead.",
+      title: "Food & Beverage Production",
+      subtitle: "FOOD & BEVERAGE",
+      desc: "From dairy and meat processing to breweries and commercial beverage facilities, maintaining precise, FDA-compliant pH control is critical to product quality and food safety. Hydrology Systems’ modular alkaline water skids generate purified, on-spec alkaline water from pH 7 to 12 directly on-site. Designed for precision sanitation and exact product pH adjustment, our automated systems eliminate the need for dangerous chemical handling while ensuring absolute batch-to-batch consistency.",
       icon: Wine,
       bgImage: beverageBg,
       accent: "from-amber-600/20 to-orange-600/5"
     },
     {
       id: "agriculture",
-      title: "Agriculture",
-      subtitle: "pH Correction for Hydroponics, Cannabis & Hemp",
-      desc: "Commercial greenhouses require absolute precision in water pH balancing to prevent crop shock and root burning. On-site Catalytic Hydroxide provides ultra-stable, non-spiking alkaline correction directly into primary nutrient manifolds.",
+      title: "Precision pH Stabilization for High-Yield Agriculture",
+      subtitle: "AGRICULTURE",
+      desc: "From large-scale hydroponic facilities to specialized substrate farming, minor pH fluctuations can lead to nutrient lockout, root burning, and lost yields. Our Catalytic Hydroxide technology eliminates erratic chemical spikes by integrating directly into primary water and nutrient manifolds to deliver continuous, ultra-stable pH adjustment. Designed to meet the stringent demands of commercial greenhouses, hydroponic facilities, hemp/CBD operations, and mushroom farms, our automated systems ensure every drop of water hit your crops at the exact target pH—safely, reliably, and without harsh chemical handling.",
       icon: Sprout,
       bgImage: agricultureBg,
       accent: "from-emerald-600/20 to-teal-600/5"
     },
     {
       id: "general-industrial",
-      title: "General Industrial",
-      subtitle: "Wastewater Treatment - Cooling Towers - Bulk Caustic Replacement",
-      desc: "Wastewater discharge requires constant pH correction to comply with stringent municipal permits. Automated on-site dosing prevents localized pH spikes, protecting discharge permits and eliminating chemical surcharges.",
+      title: "General Industrial, Cooling Towers & Wastewater",
+      subtitle: "GENERAL INDUSTRIAL",
+      desc: "From large refinery cooling towers to industrial manufacturing plants, inconsistent pH dosing leads to costly municipal surcharges, severe pipe corrosion, and chemical delivery headaches. Hydrology Systems provides on-demand, automated pH correction that eliminates the need to haul and store liquid caustic soda. By generating ultra-stable alkaline streams on-site, our systems protect municipal discharge permits, maintain optimal cooling tower water balance, and streamline industrial process chemistry—all without localized pH spikes or dangerous chemical handling.",
       icon: Factory,
       bgImage: "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/cooling_tower_mzwbby",
       accent: "from-cyan-600/20 to-sky-600/5"

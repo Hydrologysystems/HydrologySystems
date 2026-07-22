@@ -100,10 +100,63 @@ export default function Advantages() {
             initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-[11px] font-bold tracking-[0.25em] text-slate-400 uppercase"
+            className="font-mono text-[11px] font-bold tracking-[0.25em] text-slate-400 uppercase mb-3"
           >
             KEY SYSTEM ADVANTAGES
           </motion.p>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl font-display font-bold text-slate-800 tracking-tight mb-8"
+          >
+            Alkaline Systems Specifications
+          </motion.h2>
+
+          {/* Specifications Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+          >
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+                pH Production Range
+              </span>
+              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+                7pH to 12pH
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+                Flow Rate Range
+              </span>
+              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+                3 GPM To 120 GPM
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+                Total Dissolved Solids
+              </span>
+              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+                15 to 150 TDS
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+                Output Temperature
+              </span>
+              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+                80° F
+              </span>
+            </div>
+          </motion.div>
         </div>
 
         {/* Top Row: Three Advantage Cards */}
