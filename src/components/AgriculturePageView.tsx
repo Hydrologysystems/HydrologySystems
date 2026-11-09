@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { APPLICATION_PAGES, ApplicationPageData } from "../data/applicationPagesData";
 import chemicalPlantSunset from "../assets/images/chemical_plant_sunset_1783458445425.jpg";
+import ceaGreenhouseHero from "../assets/images/cea_greenhouse_hero_1792696613480.jpg";
 
 interface AgriculturePageViewProps {
   slug: "agriculture";
@@ -210,7 +211,7 @@ export function AgriculturePageView({
         {/* Right-Side Featured Cultivation Image (Pristine, no remnant text) */}
         <div className="absolute top-0 right-0 bottom-0 w-full md:w-3/5 lg:w-[58%] z-0 overflow-hidden pointer-events-none select-none">
           <img
-            src="/src/assets/images/cea_greenhouse_hero_1792696613480.jpg"
+            src={ceaGreenhouseHero}
             alt="CEA Commercial Greenhouse and Hydroponic Cultivation"
             className="w-full h-full object-cover object-right md:object-center opacity-90 sm:opacity-95 md:opacity-100 contrast-[1.03] brightness-95"
             loading="eager"
