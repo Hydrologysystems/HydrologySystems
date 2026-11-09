@@ -31,7 +31,7 @@ export default function GoogleCalendarOverlay({ id }: GoogleCalendarOverlayProps
 
         calendarObj.schedulingButton.load({
           url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PvPiiOK85zougRr31Bl--l4BVe94HMIKZHNIlyHTp1ZbXSTj4paJKJORtJy5phUP7XHHq6_iz?gv=true",
-          color: "#039BE5",
+          color: "#0066FF",
           label: "Book an appointment",
           target: targetEl,
         });

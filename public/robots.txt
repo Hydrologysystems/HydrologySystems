@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+
+# Sitemaps
+Sitemap: https://hydrologysystems.com/sitemap.xml

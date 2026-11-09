@@ -15,7 +15,7 @@ export default function LogoIcon({ className = "w-10 h-10", variant = "dark" }: 
   // "dark" variant is displayed on dark backgrounds (uses the lighter logo)
   const lightBgLogo = "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/Hydrology_logo_24x24_2_logo_copy_awdagaw_xmtt7u";
   const darkBgLogo = "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/Hydrology_logo_24x24_2_logo_copy_10_irwpba";
-  const footerLogo = "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/Hydrology_logo_24x24_2_logo_copy_awdagaw_zh5pwd";
+  const footerLogo = "https://res.cloudinary.com/ew2ztpgz/image/upload/f_auto,q_auto/Hydrology_logo_24x24_2_logo_copy_10_irwpba";
 
   let src = darkBgLogo;
   if (variant === "light") {
@@ -28,6 +28,7 @@ export default function LogoIcon({ className = "w-10 h-10", variant = "dark" }: 
     <img
       src={src}
       alt="Hydrology Logo"
+      decoding="async"
       className={className}
       referrerPolicy="no-referrer"
     />

@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, ShieldCheck, Zap, Droplet, Truck, CircleDollarSign } from "lucide-react";
+import React from "react";
+import { motion } from "motion/react";
+import { ArrowRight, ShieldCheck, Zap, Droplet, Truck, CircleDollarSign, Calculator, Phone } from "lucide-react";
 
 // @ts-ignore
 import chemicalPlantBg from "../assets/images/chemical_plant_sunset_1783458445425.jpg";
@@ -18,47 +18,37 @@ interface HeroProps {
 }
 
 export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
-
   return (
     <section
-      ref={containerRef}
       id="home"
-      className="relative min-h-screen pt-40 pb-20 sm:pb-24 lg:pb-28 flex items-center justify-center bg-[#050d18] overflow-hidden"
+      className="relative min-h-screen pt-24 sm:pt-28 lg:pt-32 pb-20 sm:pb-24 lg:pb-28 flex items-center justify-center bg-[#080B12] overflow-hidden border-t border-[#DCE2EB]/20"
     >
       {/* Immersive Full-Bleed Background Image & Overlays */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        <motion.div
-          style={{ y, scale }}
-          className="absolute inset-0 w-full h-full"
-        >
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none select-none">
+        <div className="absolute inset-0 w-full h-full">
           <img
             src={chemicalPlantBg}
             alt="Hydrology Advanced Chemical Production Plant"
             loading="eager"
-            className="w-full h-[120%] object-cover object-center scale-100 transition-transform duration-1000"
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-center brightness-90 contrast-[1.08] saturate-[1.1]"
             referrerPolicy="no-referrer"
           />
-        </motion.div>
-        {/* Navy gradient overlay: nearly transparent near top to keep sky/clouds visible, much darker towards bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/15 via-[#0d1b2a]/55 to-[#050d18]/95" />
+        </div>
+        {/* Cinematic dark scrim: keeps the sunset sky, glowing refinery lights, and water reflections clearly visible while preserving sharp text contrast */}
+        <div className="absolute inset-0 bg-[#080B12]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080B12]/75 via-[#080B12]/30 via-45% to-[#080B12]/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/70 via-transparent via-50% to-[#080B12]/70" />
         
-        {/* Subtle warm amber glow rising from bottom-left corner */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(234,119,4,0.18)_0%,transparent_60%)]" />
+        {/* Subtle royal blue glow accentuating bottom-left corner and top right */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,102,255,0.22)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,102,255,0.12)_0%,transparent_50%)]" />
       </div>
 
       {/* Main Content Area */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
         
-
-
         {/* Master Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -66,9 +56,9 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tight text-white max-w-5xl leading-[1.1] mb-6"
         >
-          CUT YOUR CAUSTIC SODA &amp; SODA ASH OPEX <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
-            BY UP TO 70%.
+          ON-SITE INDUSTRIAL pH CONTROL <br className="hidden sm:inline" />
+          <span className="text-[#0066FF]">
+            CUT BULK CAUSTIC OPEX BY UP TO 70%
           </span>
         </motion.h1>
 
@@ -79,7 +69,9 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-lg sm:text-xl text-slate-300 max-w-3xl leading-relaxed mb-10 font-normal"
         >
-          Eliminate the logistics, safety risks, and multi-million dollar expense of purchased NaOH &amp; (Na₂CO₃). Generate high-purity alkaline solutions on-demand directly at your plant.
+          Eliminate the logistics, safety risks, and expense of purchased Caustic Soda &amp; Soda Ash.{" "}
+          <br className="hidden sm:inline" />
+          Generate high-purity alkaline solutions on-demand directly at your plant.
         </motion.p>
 
         {/* Call to Actions */}
@@ -89,16 +81,28 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-20"
         >
-          {/* Main Orange Button (Matches image focus but clean/polished) */}
+          {/* Main Royal Blue Button: Calculate Your Savings */}
           <button
+            type="button"
             onClick={onCalculateClick}
-            className="group w-full sm:w-auto flex items-center justify-center space-x-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-base px-8 py-4.5 rounded-full shadow-xl shadow-orange-950/20 hover:shadow-orange-500/20 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+            className="group w-full sm:w-auto flex items-center justify-center space-x-3 bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-base px-8 py-4.5 rounded-full shadow-xl shadow-[#0066FF]/25 hover:shadow-[#0066FF]/40 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
           >
+            <Calculator className="w-5 h-5 text-white/90" />
             <span>Calculate Your Savings</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
-
+          {/* Secondary Button: Book a Consultation */}
+          {onBookCallClick && (
+            <button
+              type="button"
+              onClick={onBookCallClick}
+              className="group w-full sm:w-auto flex items-center justify-center space-x-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 font-bold text-base px-8 py-4.5 rounded-full shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer backdrop-blur-sm"
+            >
+              <Phone className="w-5 h-5 text-[#0066FF] group-hover:scale-110 transition-transform" />
+              <span>Book a Consultation</span>
+            </button>
+          )}
         </motion.div>
 
         {/* Modern Live Benefit Highlights Block */}
@@ -109,8 +113,8 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full text-left"
         >
           {/* Item 1 */}
-          <div className="flex items-start space-x-4 bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm hover:border-blue-500/20 transition-colors">
-            <div className="flex-shrink-0 p-3 bg-blue-500/10 rounded-xl text-blue-400">
+          <div className="flex items-start space-x-4 bg-[#080B12]/80 border border-white/10 p-6 rounded-2xl backdrop-blur-sm hover:border-[#0066FF]/40 transition-colors">
+            <div className="flex-shrink-0 p-3 bg-[#0066FF]/10 rounded-xl text-[#0066FF]">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
@@ -122,8 +126,8 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           </div>
 
           {/* Item 2 */}
-          <div className="flex items-start space-x-4 bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm hover:border-orange-500/20 transition-colors">
-            <div className="flex-shrink-0 p-3 bg-orange-500/10 rounded-xl text-orange-400">
+          <div className="flex items-start space-x-4 bg-[#080B12]/80 border border-white/10 p-6 rounded-2xl backdrop-blur-sm hover:border-[#0066FF]/40 transition-colors">
+            <div className="flex-shrink-0 p-3 bg-[#0066FF]/10 rounded-xl text-[#0066FF]">
               <Truck className="w-6 h-6" />
             </div>
             <div>
@@ -135,8 +139,8 @@ export default function Hero({ onCalculateClick, onBookCallClick }: HeroProps) {
           </div>
 
           {/* Item 3 */}
-          <div className="flex items-start space-x-4 bg-slate-900/40 border border-slate-800/60 p-6 rounded-2xl backdrop-blur-sm hover:border-emerald-500/20 transition-colors">
-            <div className="flex-shrink-0 p-3 bg-emerald-500/10 rounded-xl text-emerald-400">
+          <div className="flex items-start space-x-4 bg-[#080B12]/80 border border-white/10 p-6 rounded-2xl backdrop-blur-sm hover:border-[#0066FF]/40 transition-colors">
+            <div className="flex-shrink-0 p-3 bg-[#0066FF]/10 rounded-xl text-[#0066FF]">
               <CircleDollarSign className="w-6 h-6" />
             </div>
             <div>

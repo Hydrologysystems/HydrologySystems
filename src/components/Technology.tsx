@@ -47,21 +47,23 @@ export default function Technology() {
   return (
     <section
       id="technology"
-      className="relative py-24 sm:py-32 bg-slate-950 border-t border-slate-900 overflow-hidden"
+      className="relative py-24 sm:py-32 bg-[#080B12] border-t border-white/10 overflow-hidden"
     >
       {/* Immersive Darkened Industrial Background Texture */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={techBgImage}
           alt="Stainless Steel Industrial Valves and Piping Background"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-10 filter brightness-[0.20] contrast-[1.2]"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080B12] via-[#080B12]/80 to-[#080B12]" />
       </div>
 
       {/* Visual background flares */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.05),transparent_40%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(0,102,255,0.08),transparent_40%)] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -71,7 +73,7 @@ export default function Technology() {
             id="tech-headline"
           >
             Hydraulic pH Power:{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-cyan-300">
+            <span className="text-[#0066FF]">
               Cleaner, Safer, Cheaper
             </span>
           </h2>
@@ -88,7 +90,7 @@ export default function Technology() {
                 onClick={() => handleTabChange("hcr")}
                 className={`flex-1 py-2.5 px-4 rounded-sm text-xs font-sans font-bold tracking-wider transition-all cursor-pointer ${
                   activeTab === "hcr"
-                    ? "bg-brand-teal text-slate-950 glow-teal font-extrabold"
+                    ? "bg-[#0066FF] text-white glow-teal font-extrabold"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
@@ -98,7 +100,7 @@ export default function Technology() {
                 onClick={() => handleTabChange("ehg")}
                 className={`flex-1 py-2.5 px-4 rounded-sm text-xs font-sans font-bold tracking-wider transition-all cursor-pointer ${
                   activeTab === "ehg"
-                    ? "bg-brand-teal text-slate-950 glow-teal font-extrabold"
+                    ? "bg-[#0066FF] text-white glow-teal font-extrabold"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
@@ -118,7 +120,7 @@ export default function Technology() {
                   className="flex flex-col gap-6"
                 >
                   <div>
-                    <span className="font-mono text-[10px] text-brand-cyan tracking-widest uppercase block mb-1">
+                    <span className="font-mono text-[10px] text-[#0066FF] tracking-widest uppercase block mb-1">
                       {techSpecs[activeTab].subtitle}
                     </span>
                     <h3 className="font-display text-2xl font-bold text-slate-100">
@@ -151,33 +153,33 @@ export default function Technology() {
           </div>
 
           {/* Right: Cutaway Multi-Tank Skid Model showing inside the vessels */}
-          <div className="lg:col-span-8 relative rounded-[1.5rem] border border-slate-800/80 bg-slate-950 overflow-hidden flex flex-col items-center justify-between p-4 shadow-2xl min-h-[500px] sm:min-h-[560px] group">
+          <div className="lg:col-span-8 relative rounded-[1.5rem] border border-white/10 bg-[#080B12] overflow-hidden flex flex-col items-center justify-between p-4 shadow-2xl min-h-[500px] sm:min-h-[560px] group">
             
             {/* Technical Header details */}
-            <div className="w-full flex justify-between items-start z-20 pb-2 border-b border-slate-900">
+            <div className="w-full flex justify-between items-start z-20 pb-2 border-b border-white/10">
               <div className="flex flex-col gap-0.5">
-                <span className="font-mono text-[8px] text-brand-teal uppercase tracking-widest font-black">
+                <span className="font-mono text-[8px] text-[#0066FF] uppercase tracking-widest font-black">
                   {viewMode === "physical" ? "SYSTEM HARDWARE MODEL" : "SYSTEM PID CUTAWAY DIAGRAM"}
                 </span>
                 <span className="font-sans text-xs font-bold text-slate-200">
                   {viewMode === "physical" ? "Original S-7 Physical Industrial Skid Platform" : "On-Site Hydrology Skid (MODEL-S7) • Internal Fluid Dynamics"}
                 </span>
               </div>
-              <div className="px-2 py-0.5 rounded bg-brand-emerald/10 border border-brand-emerald/20 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse" />
-                <span className="font-mono text-[8px] text-brand-emerald tracking-wide uppercase font-bold">
+              <div className="px-2 py-0.5 rounded bg-[#0066FF]/10 border border-[#0066FF]/20 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-pulse" />
+                <span className="font-mono text-[8px] text-[#0066FF] tracking-wide uppercase font-bold">
                   {viewMode === "physical" ? "SKID HARDWARE: PHOTO REFERENCE" : "SKID TELEMETRY: ACTIVE CUTAWAY VIEW"}
                 </span>
               </div>
             </div>
 
             {/* Toggle tabs to prioritize seeing the original model image first */}
-            <div className="w-full flex gap-2 p-1 rounded bg-slate-900 border border-slate-800 mb-3 z-20 mt-3">
+            <div className="w-full flex gap-2 p-1 rounded bg-[#0c121e] border border-white/10 mb-3 z-20 mt-3">
               <button
                 onClick={() => setViewMode("physical")}
                 className={`flex-1 py-2 px-3 rounded text-[10px] font-mono tracking-wider font-extrabold uppercase transition-all cursor-pointer text-center ${
                   viewMode === "physical"
-                    ? "bg-brand-teal text-slate-950 font-black shadow-[0_0_12px_rgba(20,184,166,0.4)]"
+                    ? "bg-[#0066FF] text-white font-black shadow-[0_0_12px_rgba(0,102,255,0.4)]"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
@@ -187,7 +189,7 @@ export default function Technology() {
                 onClick={() => setViewMode("cutaway")}
                 className={`flex-1 py-2 px-3 rounded text-[10px] font-mono tracking-wider font-extrabold uppercase transition-all cursor-pointer text-center ${
                   viewMode === "cutaway"
-                    ? "bg-brand-teal text-slate-950 font-black shadow-[0_0_12px_rgba(20,184,166,0.4)]"
+                    ? "bg-[#0066FF] text-white font-black shadow-[0_0_12px_rgba(0,102,255,0.4)]"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
@@ -203,6 +205,8 @@ export default function Technology() {
                     id="technology-skid-image"
                     src={skidImage}
                     alt="Hydrology On-site Physical Skid System S-7 Model"
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="object-contain max-h-[400px] w-full rounded-lg transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                   />

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Award, Briefcase, History, Scale, ShieldCheck, X, Maximize2 } from "lucide-react";
 import MasonryGallery, { MasonryItem } from "./MasonryGallery";
 
@@ -24,15 +24,6 @@ import bottlingPlantImg from "../assets/images/beverage_bottling_plant_conveyor_
 import refineryBg from "../assets/images/refinery_equipment_bg_1782937594866.jpg";
 
 export default function Expertise() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.12, 1.02]);
-
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const masonryItems: MasonryItem[] = [
@@ -116,27 +107,25 @@ export default function Expertise() {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-20 sm:py-24 lg:py-28 bg-transparent border-t border-slate-200">
+    <section id="about" className="relative py-20 sm:py-24 lg:py-28 bg-white border-t border-[#DCE2EB]">
       {/* Background Image Overlay with Parallax */}
       <div className="absolute inset-0 z-0 opacity-[0.10] pointer-events-none select-none overflow-hidden">
-        <motion.div 
-          style={{ y, scale }}
-          className="absolute inset-0 w-full h-full"
-        >
+        <div className="absolute inset-0 w-full h-full">
           <img 
             src={refineryBg} 
             alt="Hydrology Industrial Refinery Equipment Backdrop" 
             width={1920}
             height={1280}
             loading="lazy"
-            className="w-full h-[120%] object-cover grayscale brightness-75"
+            decoding="async"
+            className="w-full h-full object-cover grayscale brightness-75"
             referrerPolicy="no-referrer"
           />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8f9fa] via-transparent to-[#f8f9fa]" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
       </div>
 
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[radial-gradient(circle_at_top_left,rgba(0,128,128,0.01),transparent_60%)] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[radial-gradient(circle_at_top_left,rgba(0,102,255,0.03),transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -149,7 +138,7 @@ export default function Expertise() {
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-primary-600 font-mono text-[10px] tracking-[0.2em] font-bold uppercase mb-3"
+              className="text-[#0066FF] font-mono text-[10px] tracking-[0.2em] font-bold uppercase mb-3"
             >
               ENGINEERING CREDENTIALS & COMPLIANCE
             </motion.div>
@@ -159,7 +148,7 @@ export default function Expertise() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 mb-6"
+              className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#101828] mb-6"
             >
               Our Expertise & Commitment
             </motion.h2>
@@ -169,7 +158,7 @@ export default function Expertise() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-sans text-xs sm:text-sm text-slate-700 font-normal leading-relaxed mb-4"
+              className="font-sans text-xs sm:text-sm text-[#101828] font-normal leading-relaxed mb-4"
             >
               Our team brings over 60 years of combined experience in industrial water purification, high-pH technology, and industrial processes. We combine deep knowledge of regulatory compliance with a specialization in proprietary Hydroxide Catalyst Reactor (HCR) technology.
             </motion.p>
@@ -179,29 +168,29 @@ export default function Expertise() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-sans text-xs sm:text-sm text-slate-500 font-normal leading-relaxed"
+              className="font-sans text-xs sm:text-sm text-[#667085] font-normal leading-relaxed"
             >
               This HCR is integrated with an advanced electrochemical separation process, creating an efficient, closed-loop system for on-site NaOH production. We have been developing this pH control platform since 2015, leveraging our prior success in commercial and consumer alkaline pH water brands.
             </motion.p>
 
             {/* Micro badges showing regulatory and engineering strengths */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-8 border-t border-slate-200 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-8 border-t border-[#DCE2EB] max-w-2xl mx-auto">
               <div className="flex items-start text-left gap-3">
-                <div className="p-2 rounded-lg bg-primary-50 border border-primary-200 text-primary-600 shadow-sm shrink-0">
+                <div className="p-2 rounded-lg bg-[#0066FF]/10 border border-[#0066FF]/20 text-[#0066FF] shadow-xs shrink-0">
                   <Scale className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-display text-xs font-bold text-slate-800 mb-1">Strict Compliance</h4>
-                  <p className="font-sans text-[11px] text-slate-500 font-normal leading-snug">Engineered to meet EPA & state wastewater discharge regulations.</p>
+                  <h4 className="font-display text-xs font-bold text-[#101828] mb-1">Strict Compliance</h4>
+                  <p className="font-sans text-[11px] text-[#667085] font-normal leading-snug">Engineered to meet EPA & state wastewater discharge regulations.</p>
                 </div>
               </div>
               <div className="flex items-start text-left gap-3">
-                <div className="p-2 rounded-lg bg-primary-50 border border-primary-200 text-primary-600 shadow-sm shrink-0">
+                <div className="p-2 rounded-lg bg-[#0066FF]/10 border border-[#0066FF]/20 text-[#0066FF] shadow-xs shrink-0">
                   <Award className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-display text-xs font-bold text-slate-800 mb-1">60+ Years Combined</h4>
-                  <p className="font-sans text-[11px] text-slate-500 font-normal leading-snug">Experienced team specializing in water treatment engineering.</p>
+                  <h4 className="font-display text-xs font-bold text-[#101828] mb-1">60+ Years Combined</h4>
+                  <p className="font-sans text-[11px] text-[#667085] font-normal leading-snug">Experienced team specializing in water treatment engineering.</p>
                 </div>
               </div>
             </div>
@@ -210,7 +199,7 @@ export default function Expertise() {
           {/* Bottom visual section: full-width curved portrait gallery */}
           <div className="w-full relative overflow-visible">
             {/* Decorative accent behind the gallery */}
-            <div className="absolute -inset-4 bg-gradient-to-tr from-primary-500/5 to-transparent rounded-3xl filter blur-xl opacity-35 pointer-events-none" />
+            <div className="absolute -inset-4 bg-gradient-to-tr from-[#0066FF]/5 to-transparent rounded-3xl filter blur-xl opacity-35 pointer-events-none" />
 
             <MasonryGallery
               items={masonryItems}
@@ -230,19 +219,19 @@ export default function Expertise() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 backdrop-blur-md p-4 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#080B12]/95 backdrop-blur-md p-4 cursor-zoom-out"
           >
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="max-w-4xl max-h-[90vh] bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative flex items-center justify-center p-2"
+              className="max-w-4xl max-h-[90vh] bg-[#080B12] border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative flex items-center justify-center p-2"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 p-2 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors z-10 cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-lg bg-black/60 border border-white/10 text-slate-300 hover:text-white hover:bg-black/80 transition-colors z-10 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -250,6 +239,7 @@ export default function Expertise() {
               <img
                 src={selectedImage}
                 alt="Enlarged view"
+                decoding="async"
                 className="max-w-full max-h-[80vh] rounded-lg object-contain"
                 referrerPolicy="no-referrer"
               />

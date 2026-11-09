@@ -7,14 +7,32 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Droplet, Phone, MessageSquare, ChevronDown, Calculator } from "lucide-react";
 import LogoIcon from "./LogoIcon";
-import GoogleCalendarOverlay from "./GoogleCalendarOverlay";
 
 interface HeaderProps {
-  onBookCallClick: () => void;
+  onBookCallClick: (presetSubject?: string) => void;
   onCalculatorClick: () => void;
+  onSelectIndustry?: (industryId: any) => void;
+  onClearanceClick?: () => void;
+  isClearanceActive?: boolean;
+  onCapitalAnalysisClick?: (subTab?: "comparison" | "risk" | "advantage") => void;
+  isCapitalAnalysisActive?: boolean;
+  onSpecsClick?: () => void;
+  onFaqClick?: () => void;
+  onHomeClick?: () => void;
 }
 
-export default function Header({ onBookCallClick, onCalculatorClick }: HeaderProps) {
+export default function Header({ 
+  onBookCallClick, 
+  onCalculatorClick, 
+  onSelectIndustry, 
+  onClearanceClick,
+  isClearanceActive = false,
+  onCapitalAnalysisClick,
+  isCapitalAnalysisActive = false,
+  onSpecsClick,
+  onFaqClick,
+  onHomeClick 
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,22 +50,58 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
     { label: "HOME", href: "#home" },
     { label: "TECHNOLOGY", href: "#technology" },
     { label: "APPLICATION", href: "#applications" },
+    { label: "US vs. THEM", href: "#capital-analysis" },
     { label: "ABOUT US", href: "#about" },
+    { label: "CLEARANCE", href: "#clearance" },
   ];
 
   const dropdownOptions = [
-    { label: "Lithium Extraction", href: "#applications" },
-    { label: "Onshore/Offshore Drilling", href: "#applications" },
-    { label: "Hydroponics - Cannabis", href: "#applications" },
-    { label: "Waste Water Treatment", href: "#applications" },
-    { label: "Food & Beverage", href: "#applications" },
-    { label: "General Manufacturing", href: "#applications" },
+    { label: "Oil Refineries & Hydrocarbon", href: "#oil-refineries-hydrocarbon", industryId: "refineries" as const },
+    { label: "Cooling Towers & Heat Exchangers", href: "#cooling-towers-industrial", industryId: "cooling-towers" as const },
+    { label: "Wastewater & Effluent Neutralization", href: "#wastewater-treatment-effluent", industryId: "wastewater" as const },
+    { label: "Lithium & Drilling Operations", href: "#drilling-lithium-extraction", industryId: "drilling" as const },
+    { label: "Food & Beverage Compliance", href: "#food-beverage-compliance", industryId: "food-beverage" as const },
+    { label: "Agriculture & Cultivation", href: "#agriculture-wastewater", industryId: "agriculture" as const },
+    { label: "⚡ Model HAWS-120 Skid ($39K Clearance)", href: "#clearance" },
+    { label: "📊 US vs. THEM: Risk vs Advantage", href: "#capital-analysis" },
+    { label: "Engineering Specifications", href: "#technical-specifications" },
+    { label: "Technical FAQ", href: "#technical-faq" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, industryId?: any) => {
     e.preventDefault();
     setMobileMenuOpen(false);
     setIsDropdownOpen(false);
+
+    if (href === "#clearance" && onClearanceClick) {
+      onClearanceClick();
+      return;
+    }
+
+    if (href === "#capital-analysis" && onCapitalAnalysisClick) {
+      onCapitalAnalysisClick();
+      return;
+    }
+
+    if ((href === "#technical-specifications" || href === "#specifications") && onSpecsClick) {
+      onSpecsClick();
+      return;
+    }
+
+    if ((href === "#technical-faq" || href === "#faq") && onFaqClick) {
+      onFaqClick();
+      return;
+    }
+
+    if (industryId && onSelectIndustry) {
+      onSelectIndustry(industryId);
+      return;
+    }
+
+    if (href === "#home" && onHomeClick) {
+      onHomeClick();
+    }
+
     const element = document.querySelector(href);
     if (element) {
       const offset = 80; // height of header
@@ -60,6 +114,14 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
         top: offsetPosition,
         behavior: "smooth"
       });
+    } else if (onHomeClick) {
+      onHomeClick();
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 50);
     }
   };
 
@@ -69,48 +131,51 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
         id="header"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
           isScrolled
-            ? "bg-white/90 backdrop-blur-md border-slate-200/80 shadow-sm shadow-slate-150/40 py-2"
-            : "bg-[#050d18]/15 backdrop-blur-sm border-white/5 py-3"
+            ? "bg-white/95 backdrop-blur-md border-[#DCE2EB] shadow-xs py-2"
+            : "bg-[#080B12]/80 backdrop-blur-md border-white/10 py-2.5 sm:py-3"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 lg:gap-6">
           {/* Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 sm:gap-3 group shrink-0"
           >
             <LogoIcon
               variant={isScrolled ? "light" : "dark"}
-              className={`h-10 md:h-12 object-contain group-hover:scale-105 transition-transform duration-300 shrink-0 ${!isScrolled ? "drop-shadow-[0_0_12px_rgba(79,209,197,0.4)]" : ""}`}
+              className={`h-9 sm:h-10 md:h-12 object-contain group-hover:scale-105 transition-transform duration-300 shrink-0 ${!isScrolled ? "drop-shadow-[0_0_12px_rgba(0,102,255,0.4)]" : ""}`}
             />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-2.5 lg:gap-4 xl:gap-6 2xl:gap-7 shrink-0">
             {navItems.map((item) => {
               if (item.label === "APPLICATION") {
                 return (
                   <div
                     key={item.label}
-                    className="relative py-2"
+                    className="relative flex items-center shrink-0"
                     onMouseEnter={() => setIsDropdownOpen(true)}
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
                     <button
                       onClick={(e) => handleNavClick(e as any, item.href)}
-                      className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 flex items-center gap-1 cursor-pointer ${
+                      className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 relative py-1 px-1.5 group flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                         isScrolled
-                          ? "text-slate-600 hover:text-primary-600"
-                          : "text-[#f5f8f9]/85 hover:text-[#4fd1c5]"
+                          ? "text-[#667085] hover:text-[#0066FF]"
+                          : "text-white/85 hover:text-white"
                       }`}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
                       <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${
                         isScrolled
-                          ? isDropdownOpen ? "rotate-180 text-primary-600" : "text-slate-500"
-                          : isDropdownOpen ? "rotate-180 text-[#4fd1c5]" : "text-[#b9c7cf]"
+                          ? isDropdownOpen ? "rotate-180 text-[#0066FF]" : "text-[#667085]"
+                          : isDropdownOpen ? "rotate-180 text-[#0066FF]" : "text-slate-400"
                       }`} />
+                      <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ${
+                        isDropdownOpen ? "w-full" : "w-0 group-hover:w-full"
+                      } bg-[#0066FF]`} />
                     </button>
                     <AnimatePresence>
                       {isDropdownOpen && (
@@ -121,19 +186,19 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                           transition={{ duration: 0.15, ease: "easeOut" }}
                           className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 rounded-xl border p-2 shadow-xl z-50 flex flex-col gap-0.5 ${
                             isScrolled
-                              ? "border-slate-200 bg-white shadow-slate-200/50"
-                              : "border-slate-800 bg-[#0d1b2a]/95 backdrop-blur-md shadow-black/40"
+                              ? "border-[#DCE2EB] bg-white shadow-slate-200/50"
+                              : "border-white/10 bg-[#080B12]/95 backdrop-blur-md shadow-black/40"
                           }`}
                         >
                           {dropdownOptions.map((opt) => (
                             <a
                               key={opt.label}
                               href={opt.href}
-                              onClick={(e) => handleNavClick(e, opt.href)}
+                              onClick={(e) => handleNavClick(e, opt.href, opt.industryId)}
                               className={`px-3 py-2 text-[11px] font-semibold font-sans tracking-wider rounded-lg transition-colors duration-150 text-left ${
                                 isScrolled
-                                  ? "text-slate-600 hover:text-primary-600 hover:bg-slate-50"
-                                  : "text-[#b9c7cf] hover:text-[#4fd1c5] hover:bg-white/5"
+                                  ? "text-[#667085] hover:text-[#0066FF] hover:bg-[#F4F6FA]"
+                                  : "text-slate-300 hover:text-white hover:bg-white/5"
                               }`}
                             >
                               {opt.label}
@@ -143,6 +208,61 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                       )}
                     </AnimatePresence>
                   </div>
+                );
+              }
+              if (item.label === "CLEARANCE") {
+                return (
+                  <a
+                    key={item.label}
+                    href="#clearance"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onClearanceClick) onClearanceClick();
+                    }}
+                    className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 relative py-1 px-1.5 group flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 ${
+                      isClearanceActive
+                        ? "text-rose-600 font-bold"
+                        : isScrolled
+                        ? "text-[#667085] hover:text-rose-600"
+                        : "text-white/90 hover:text-rose-400"
+                    }`}
+                  >
+                    <span>CLEARANCE</span>
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-rose-500/15 text-rose-600 border border-rose-500/30">
+                      $39K
+                    </span>
+                    <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ${
+                      isClearanceActive 
+                        ? "w-full bg-rose-500" 
+                        : "w-0 group-hover:w-full " + (isScrolled ? "bg-rose-500" : "bg-rose-400")
+                    }`} />
+                  </a>
+                );
+              }
+              if (item.label === "US vs. THEM" || item.label === "US vs THEM" || item.label === "CAPITAL ANALYSIS") {
+                return (
+                  <a
+                    key={item.label}
+                    href="#capital-analysis"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onCapitalAnalysisClick) onCapitalAnalysisClick();
+                    }}
+                    className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 relative py-1 px-1.5 group flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 ${
+                      isCapitalAnalysisActive
+                        ? "text-[#0066FF] font-bold"
+                        : isScrolled
+                        ? "text-[#667085] hover:text-[#0066FF]"
+                        : "text-white/90 hover:text-[#0066FF]"
+                    }`}
+                  >
+                    <span>US vs. THEM</span>
+                    <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ${
+                      isCapitalAnalysisActive 
+                        ? "w-full bg-[#0066FF]" 
+                        : "w-0 group-hover:w-full bg-[#0066FF]"
+                    }`} />
+                  </a>
                 );
               }
               return (
@@ -157,46 +277,40 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                       handleNavClick(e, item.href);
                     }
                   }}
-                  className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 relative py-1 group ${
+                  className={`font-sans text-xs font-semibold tracking-wider transition-colors duration-200 relative py-1 px-1.5 group flex items-center cursor-pointer whitespace-nowrap shrink-0 ${
                     isScrolled
-                      ? "text-slate-600 hover:text-primary-600"
-                      : "text-[#f5f8f9]/85 hover:text-[#4fd1c5]"
+                      ? "text-[#667085] hover:text-[#0066FF]"
+                      : "text-white/85 hover:text-white"
                   }`}
                 >
-                  {item.label}
-                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                    isScrolled ? "bg-primary-500" : "bg-[#4fd1c5]"
-                  }`} />
+                  <span>{item.label}</span>
+                  <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full bg-[#0066FF]`} />
                 </a>
               );
             })}
           </nav>
 
           {/* Action Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2 lg:gap-3 shrink-0">
             <button
               onClick={onCalculatorClick}
-              className={`px-5 py-2.5 rounded-full font-sans text-xs font-bold tracking-wider transition-all duration-300 border flex items-center gap-2 cursor-pointer ${
+              className={`px-3.5 lg:px-4.5 xl:px-5 py-2 lg:py-2.5 rounded-full font-sans text-xs font-bold tracking-wider transition-all duration-300 border flex items-center gap-1.5 lg:gap-2 cursor-pointer whitespace-nowrap ${
                 isScrolled
-                  ? "border-teal-600 text-teal-600 hover:bg-teal-50 bg-white"
-                  : "border-teal-500/30 text-teal-400 hover:border-teal-400/60 bg-teal-500/10 hover:bg-teal-500/20 shadow-[0_0_15px_rgba(20,184,166,0.15)] hover:scale-[1.02]"
+                  ? "border-[#0066FF] text-[#0066FF] hover:bg-[#0066FF]/5 bg-white"
+                  : "border-[#0066FF]/40 text-[#0066FF] hover:border-[#0066FF] bg-[#0066FF]/10 hover:bg-[#0066FF]/20 shadow-[0_0_15px_rgba(0,102,255,0.15)] hover:scale-[1.02]"
               }`}
             >
               <Calculator className="w-3.5 h-3.5" />
-              CALCULATOR
+              <span>CALCULATOR</span>
             </button>
-            <div
-              onClick={onBookCallClick}
-              className={`relative overflow-hidden px-5 py-2.5 rounded-full font-sans text-xs font-bold tracking-wider transition-all duration-300 border flex items-center gap-2 cursor-pointer ${
-                isScrolled
-                  ? "bg-primary-600 hover:bg-primary-700 text-white border-primary-700 shadow-md"
-                  : "bg-[#ea7704] hover:bg-[#ff8c1a] text-white border-[#f08518] shadow-[0_0_15px_rgba(234,119,4,0.3)] hover:scale-[1.02]"
-              }`}
+            <button
+              type="button"
+              onClick={() => onBookCallClick()}
+              className="px-3.5 lg:px-4.5 xl:px-5 py-2 lg:py-2.5 rounded-full font-sans text-xs font-bold tracking-wider transition-all duration-300 border flex items-center gap-1.5 lg:gap-2 cursor-pointer whitespace-nowrap bg-[#0066FF] hover:bg-[#0052cc] text-white border-[#0066FF] shadow-[0_0_15px_rgba(0,102,255,0.35)] hover:scale-[1.02]"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>BOOK A CALL</span>
-              <GoogleCalendarOverlay id="google-calendar-header-desktop" />
-            </div>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -204,8 +318,8 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
               isScrolled
-                ? "text-slate-600 hover:text-slate-950 hover:bg-slate-100"
-                : "text-white hover:text-[#4fd1c5] hover:bg-white/5"
+                ? "text-[#101828] hover:text-[#0066FF] hover:bg-slate-100"
+                : "text-white hover:text-[#0066FF] hover:bg-white/5"
             }`}
             aria-label="Toggle Menu"
           >
@@ -222,10 +336,10 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className={`fixed inset-0 top-[72px] z-40 backdrop-blur-3xl md:hidden flex flex-col px-6 py-8 justify-between h-[calc(100vh-72px)] border-b ${
+            className={`fixed inset-0 top-[56px] sm:top-[64px] z-40 backdrop-blur-3xl md:hidden flex flex-col px-5 sm:px-6 py-6 justify-between h-[calc(100vh-56px)] sm:h-[calc(100vh-64px)] overflow-y-auto border-b ${
               isScrolled
-                ? "bg-white/98 border-slate-200"
-                : "bg-[#0d1b2a]/95 border-slate-800"
+                ? "bg-white/98 border-[#DCE2EB]"
+                : "bg-[#080B12]/98 border-white/10"
             }`}
           >
             <div className="flex flex-col gap-6">
@@ -237,15 +351,15 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                         onClick={() => setMobileApplicationsOpen(!mobileApplicationsOpen)}
                         className={`font-display text-xl font-bold tracking-wide py-2 flex items-center justify-between w-full text-left ${
                           isScrolled
-                            ? "text-slate-900 hover:text-primary-600"
-                            : "text-white hover:text-[#4fd1c5]"
+                            ? "text-[#101828] hover:text-[#0066FF]"
+                            : "text-white hover:text-[#0066FF]"
                         }`}
                       >
                         <span>{item.label}</span>
                         <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${
                           isScrolled
-                            ? `text-slate-500 ${mobileApplicationsOpen ? "rotate-180 text-primary-600" : ""}`
-                            : `text-[#b9c7cf] ${mobileApplicationsOpen ? "rotate-180 text-[#4fd1c5]" : ""}`
+                            ? `text-[#667085] ${mobileApplicationsOpen ? "rotate-180 text-[#0066FF]" : ""}`
+                            : `text-slate-400 ${mobileApplicationsOpen ? "rotate-180 text-[#0066FF]" : ""}`
                         }`} />
                       </button>
                       <AnimatePresence>
@@ -256,18 +370,18 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
                             className={`overflow-hidden pl-4 flex flex-col gap-3 mt-1 border-l ${
-                              isScrolled ? "border-slate-200" : "border-slate-800"
+                              isScrolled ? "border-[#DCE2EB]" : "border-white/10"
                             }`}
                           >
                             {dropdownOptions.map((opt) => (
                               <a
                                 key={opt.label}
                                 href={opt.href}
-                                onClick={(e) => handleNavClick(e, opt.href)}
+                                onClick={(e) => handleNavClick(e, opt.href, opt.industryId)}
                                 className={`font-sans text-sm font-semibold py-1 ${
                                   isScrolled
-                                    ? "text-slate-600 hover:text-primary-600"
-                                    : "text-[#b9c7cf] hover:text-[#4fd1c5]"
+                                    ? "text-[#667085] hover:text-[#0066FF]"
+                                    : "text-slate-300 hover:text-white"
                                 }`}
                               >
                                 {opt.label}
@@ -277,6 +391,62 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                         )}
                       </AnimatePresence>
                     </div>
+                  );
+                }
+                if (item.label === "CLEARANCE") {
+                  return (
+                    <motion.a
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      key={item.label}
+                      href="#clearance"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMobileMenuOpen(false);
+                        if (onClearanceClick) onClearanceClick();
+                      }}
+                      className={`font-display text-xl font-bold tracking-wide py-2 flex items-center gap-2.5 ${
+                        isClearanceActive
+                          ? "text-rose-600"
+                          : isScrolled
+                          ? "text-[#101828] hover:text-rose-600"
+                          : "text-white hover:text-rose-400"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-rose-500/20 text-rose-600 border border-rose-500/40">
+                        $39K Liquidation
+                      </span>
+                    </motion.a>
+                  );
+                }
+                if (item.label === "US vs. THEM" || item.label === "US vs THEM" || item.label === "CAPITAL ANALYSIS") {
+                  return (
+                    <motion.a
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      key={item.label}
+                      href="#capital-analysis"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMobileMenuOpen(false);
+                        if (onCapitalAnalysisClick) onCapitalAnalysisClick();
+                      }}
+                      className={`font-display text-xl font-bold tracking-wide py-2 flex items-center gap-2.5 ${
+                        isCapitalAnalysisActive
+                          ? "text-[#0066FF]"
+                          : isScrolled
+                          ? "text-[#101828] hover:text-[#0066FF]"
+                          : "text-white hover:text-[#0066FF]"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#0066FF]/20 text-[#0066FF] border border-[#0066FF]/40">
+                        Risk vs Advantage
+                      </span>
+                    </motion.a>
                   );
                 }
                 return (
@@ -297,8 +467,8 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                     }}
                     className={`font-display text-xl font-bold tracking-wide py-2 ${
                       isScrolled
-                        ? "text-slate-900 hover:text-primary-600"
-                        : "text-white hover:text-[#4fd1c5]"
+                        ? "text-[#101828] hover:text-[#0066FF]"
+                        : "text-white hover:text-white"
                     }`}
                   >
                     {item.label}
@@ -312,7 +482,7 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 }}
               className={`flex flex-col gap-3 border-t pt-6 ${
-                isScrolled ? "border-slate-100" : "border-slate-800"
+                isScrolled ? "border-[#DCE2EB]" : "border-white/10"
               }`}
             >
               <button
@@ -322,28 +492,25 @@ export default function Header({ onBookCallClick, onCalculatorClick }: HeaderPro
                 }}
                 className={`w-full py-4 rounded-xl font-sans text-sm font-bold tracking-wider shadow-md cursor-pointer text-center block ${
                   isScrolled
-                    ? "border border-teal-500 text-teal-600 bg-teal-50 hover:bg-teal-100"
-                    : "border border-teal-500/30 text-teal-400 bg-teal-500/10 hover:bg-teal-500/20"
+                    ? "border border-[#0066FF] text-[#0066FF] bg-[#0066FF]/5 hover:bg-[#0066FF]/10"
+                    : "border border-[#0066FF]/40 text-[#0066FF] bg-[#0066FF]/10 hover:bg-[#0066FF]/20"
                 }`}
               >
                 CALCULATOR
               </button>
-              <div
+              <button
+                type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onBookCallClick();
                 }}
-                className={`relative overflow-hidden w-full py-4 rounded-xl font-sans text-sm font-bold tracking-wider shadow-md cursor-pointer text-center block ${
-                  isScrolled
-                    ? "bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-primary-500/15"
-                    : "bg-[#ea7704] hover:bg-[#ff8c1a] text-white shadow-[0_0_15px_rgba(234,119,4,0.25)]"
-                }`}
+                className="w-full py-4 rounded-xl font-sans text-sm font-bold tracking-wider shadow-md cursor-pointer text-center flex items-center justify-center gap-2 bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-[0_0_15px_rgba(0,102,255,0.35)]"
               >
+                <MessageSquare className="w-4 h-4" />
                 <span>BOOK A CALL</span>
-                <GoogleCalendarOverlay id="google-calendar-header-mobile" />
-              </div>
+              </button>
               <div className={`flex justify-between text-xs font-mono mt-4 ${
-                isScrolled ? "text-slate-500" : "text-[#b9c7cf]"
+                isScrolled ? "text-[#667085]" : "text-slate-400"
               }`}>
                 <span>Support@hydrologysystems.com</span>
                 <span>949-478-2029</span>

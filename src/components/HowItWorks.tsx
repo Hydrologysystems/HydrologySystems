@@ -28,11 +28,11 @@ export default function HowItWorks() {
   }, [isPlaying]);
 
   return (
-    <section id="how-it-works" className="py-24 bg-slate-950 text-slate-100 relative overflow-hidden border-t border-slate-900">
+    <section id="how-it-works" className="py-24 bg-[#080B12] text-slate-100 relative overflow-hidden border-t border-white/10">
       
       {/* Background elegant architectural line grids */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ea5e908_1px,transparent_1px),linear-gradient(to_bottom,#0ea5e908_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0066FF08_1px,transparent_1px),linear-gradient(to_bottom,#0066FF08_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#0066FF]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -44,16 +44,16 @@ export default function HowItWorks() {
         </div>
 
         {/* Master Control and Interactive Platform Container */}
-        <div className="w-full bg-slate-900/60 rounded-[2.5rem] border border-slate-800/80 p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+        <div className="w-full bg-[#0c121e]/90 rounded-[2.5rem] border border-white/10 p-6 sm:p-8 shadow-2xl backdrop-blur-md">
           
           {/* Header Controls Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800/80">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
             <div className="flex items-center space-x-3">
               <span className="relative flex h-3.5 w-3.5">
                 {isPlaying && (
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0066FF] opacity-75"></span>
                 )}
-                <span className={`relative inline-flex rounded-full h-3.5 w-3.5 ${isPlaying ? 'bg-sky-500' : 'bg-slate-500'}`}></span>
+                <span className={`relative inline-flex rounded-full h-3.5 w-3.5 ${isPlaying ? 'bg-[#0066FF]' : 'bg-slate-500'}`}></span>
               </span>
               <div className="text-xs sm:text-sm font-mono tracking-wider text-slate-400 font-bold">
                 SIMPLE PROCESS ILLUSTRATION
@@ -64,7 +64,7 @@ export default function HowItWorks() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-200 hover:text-white rounded-xl border border-slate-700 shadow-sm transition-all text-xs font-bold cursor-pointer"
+                className="flex items-center space-x-2 px-4 py-2 bg-[#121824] hover:bg-[#1a2334] active:bg-[#0066FF] text-slate-200 hover:text-white rounded-xl border border-white/10 shadow-sm transition-all text-xs font-bold cursor-pointer"
                 title={isPlaying ? "Pause Flow Animation" : "Play Flow Animation"}
                 id="toggle-sim-btn-light"
               >
@@ -75,7 +75,7 @@ export default function HowItWorks() {
                   </>
                 ) : (
                   <>
-                    <Play className="w-3.5 h-3.5 text-sky-400" />
+                    <Play className="w-3.5 h-3.5 text-[#0066FF]" />
                     <span>PLAY FLOWS</span>
                   </>
                 )}
@@ -86,7 +86,7 @@ export default function HowItWorks() {
                   setActiveStage('stage1');
                   setIsPlaying(true);
                 }}
-                className="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 rounded-xl border border-slate-700 shadow-sm transition-all text-xs font-bold cursor-pointer"
+                className="flex items-center space-x-2 px-4 py-2 bg-[#121824] hover:bg-[#1a2334] text-slate-400 hover:text-slate-200 rounded-xl border border-white/10 shadow-sm transition-all text-xs font-bold cursor-pointer"
                 title="Reset active highlights"
                 id="reset-sim-btn-light"
               >
@@ -97,7 +97,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Fully Vectorized Interactive Diagram Canvas */}
-          <div className="relative w-full overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/90 p-4 shadow-inner" id="how-it-works-diagram-card">
+          <div className="relative w-full overflow-x-auto rounded-2xl border border-white/10 bg-[#080B12]/95 p-4 shadow-inner" id="how-it-works-diagram-card">
             <div className="min-w-[1150px] h-[520px] relative overflow-hidden select-none">
               
               {/* BACK BACKGROUND PROCESS CONNECTIONS & ANIMATED CHANNELS */}
@@ -788,13 +788,13 @@ export default function HowItWorks() {
 
         {/* Master platform description footer panel */}
         <div className="max-w-5xl mx-auto mt-16">
-          <div className="relative rounded-[2.5rem] p-6 sm:p-10 bg-slate-950 border border-slate-900 shadow-2xl overflow-hidden text-center md:text-left group">
+          <div className="relative rounded-[2.5rem] p-6 sm:p-10 bg-[#080B12] border border-white/10 shadow-2xl overflow-hidden text-center md:text-left group">
             {/* Corner highlights */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-sky-500/20 rounded-tl-[2.5rem] pointer-events-none group-hover:border-sky-400 transition-colors duration-500" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-sky-500/20 rounded-br-[2.5rem] pointer-events-none group-hover:border-sky-400 transition-colors duration-500" />
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#0066FF]/30 rounded-tl-[2.5rem] pointer-events-none group-hover:border-[#0066FF] transition-colors duration-500" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#0066FF]/30 rounded-br-[2.5rem] pointer-events-none group-hover:border-[#0066FF] transition-colors duration-500" />
             
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 sm:gap-8">
-              <div className="p-4 bg-sky-500/10 rounded-2xl text-sky-400 shrink-0">
+              <div className="p-4 bg-[#0066FF]/10 rounded-2xl text-[#0066FF] shrink-0">
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">

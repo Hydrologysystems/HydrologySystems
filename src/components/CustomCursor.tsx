@@ -76,7 +76,7 @@ export default function CustomCursor() {
         style={{
           width: "10px",
           height: "10px",
-          backgroundColor: "var(--color-accent-500)",
+          backgroundColor: "#0066FF",
           zIndex: "var(--z-cursor)",
           marginLeft: "-5px",
           marginTop: "-5px",
@@ -91,7 +91,7 @@ export default function CustomCursor() {
         style={{
           width: "28px",
           height: "28px",
-          borderColor: "rgba(234, 119, 4, 0.45)",
+          borderColor: "rgba(0, 102, 255, 0.45)",
           borderWidth: "1.5px",
           zIndex: "var(--z-cursor)",
           marginLeft: "-14px",

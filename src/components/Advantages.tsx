@@ -79,17 +79,19 @@ export default function Advantages() {
   return (
     <section 
       id="advantages" 
-      className="relative py-24 bg-[#f8f9fa] border-t border-slate-100/80 overflow-hidden"
+      className="relative py-24 bg-[#F4F6FA] border-t border-[#DCE2EB] overflow-hidden"
     >
       {/* Blueprint background overlay to replicate the light machinery technical layout */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={techBgImage}
           alt="Technical Piping Blueprint"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-[0.035] filter grayscale"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8f9fa] via-transparent to-[#f8f9fa]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F4F6FA] via-transparent to-[#F4F6FA]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -100,7 +102,7 @@ export default function Advantages() {
             initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-[11px] font-bold tracking-[0.25em] text-slate-400 uppercase mb-3"
+            className="font-mono text-[11px] font-bold tracking-[0.25em] text-[#667085] uppercase mb-3"
           >
             KEY SYSTEM ADVANTAGES
           </motion.p>
@@ -109,7 +111,7 @@ export default function Advantages() {
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-display font-bold text-slate-800 tracking-tight mb-8"
+            className="text-2xl sm:text-3xl font-display font-bold text-[#101828] tracking-tight mb-8"
           >
             Alkaline Systems Specifications
           </motion.h2>
@@ -119,40 +121,40 @@ export default function Advantages() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+            className="max-w-4xl mx-auto bg-white border border-[#DCE2EB] rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
           >
-            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
-              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#F4F6FA] border border-[#DCE2EB]">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-[#667085] mb-1 text-center">
                 pH Production Range
               </span>
-              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+              <span className="text-sm sm:text-base font-bold text-[#101828] font-mono text-center">
                 7pH to 12pH
               </span>
             </div>
 
-            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
-              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#F4F6FA] border border-[#DCE2EB]">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-[#667085] mb-1 text-center">
                 Flow Rate Range
               </span>
-              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+              <span className="text-sm sm:text-base font-bold text-[#101828] font-mono text-center">
                 3 GPM To 120 GPM
               </span>
             </div>
 
-            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
-              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#F4F6FA] border border-[#DCE2EB]">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-[#667085] mb-1 text-center">
                 Total Dissolved Solids
               </span>
-              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+              <span className="text-sm sm:text-base font-bold text-[#101828] font-mono text-center">
                 15 to 150 TDS
               </span>
             </div>
 
-            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50/80 border border-slate-100">
-              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1 text-center">
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#F4F6FA] border border-[#DCE2EB]">
+              <span className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-[#667085] mb-1 text-center">
                 Output Temperature
               </span>
-              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono text-center">
+              <span className="text-sm sm:text-base font-bold text-[#101828] font-mono text-center">
                 80° F
               </span>
             </div>
@@ -173,7 +175,7 @@ export default function Advantages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`bg-white border border-slate-100/90 rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.055)] transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col ${
+                className={`bg-white border border-[#DCE2EB] rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,102,255,0.06)] transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col ${
                   hasVideo ? "p-3" : "p-10 items-center text-center"
                 }`}
               >
@@ -182,19 +184,19 @@ export default function Advantages() {
                     {/* Content Section on top */}
                     <div className="pt-6 px-5 pb-5 flex flex-col items-center text-center flex-grow">
                       <div className="flex items-center justify-center space-x-2 mb-3">
-                        <div className="w-8 h-8 rounded-full bg-[#e6f4f2] text-teal-600 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full bg-[#0066FF]/10 text-[#0066FF] flex items-center justify-center">
                           <Icon className="w-4 h-4" />
                         </div>
-                        <span className="font-mono text-[9px] font-extrabold tracking-[0.18em] text-teal-600 uppercase">
+                        <span className="font-mono text-[9px] font-extrabold tracking-[0.18em] text-[#0066FF] uppercase">
                           {card.video!.label}
                         </span>
                       </div>
                       
-                      <h3 className="font-display text-[18px] font-bold text-slate-800 mb-3 tracking-tight">
+                      <h3 className="font-display text-[18px] font-bold text-[#101828] mb-3 tracking-tight">
                         {card.title}
                       </h3>
                       
-                      <p className="font-sans text-[13px] text-slate-500 leading-[1.6] font-normal">
+                      <p className="font-sans text-[13px] text-[#667085] leading-[1.6] font-normal">
                         {card.description}
                       </p>
                     </div>
@@ -207,13 +209,15 @@ export default function Advantages() {
                       <img 
                         src={card.video!.thumbnail} 
                         alt={card.video!.title} 
+                        loading="lazy"
+                        decoding="async"
                         className={`w-full h-full object-cover transition-transform duration-700 ${!card.hidePlayOverlay ? "group-hover:scale-105" : ""}`}
                         referrerPolicy="no-referrer"
                       />
                       {!card.hidePlayOverlay && (
-                        <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/25 transition-colors duration-300 flex items-center justify-center">
-                          <div className="w-12 h-12 rounded-full bg-white/95 shadow-lg flex items-center justify-center text-slate-800 transition-transform duration-300 group-hover:scale-110">
-                            <Play className="w-4 h-4 fill-slate-700 text-slate-700 ml-0.5" />
+                        <div className="absolute inset-0 bg-[#080B12]/20 group-hover:bg-[#080B12]/40 transition-colors duration-300 flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-full bg-white/95 shadow-lg flex items-center justify-center text-[#0066FF] transition-transform duration-300 group-hover:scale-110">
+                            <Play className="w-4 h-4 fill-[#0066FF] text-[#0066FF] ml-0.5" />
                           </div>
                         </div>
                       )}
@@ -223,17 +227,17 @@ export default function Advantages() {
                   <>
                     <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 ${
                       isMiddle 
-                        ? "bg-teal-600 text-white shadow-[0_8px_20px_rgba(13,148,136,0.25)]" 
-                        : "bg-[#e6f4f2] text-teal-600 border border-teal-100/50"
+                        ? "bg-[#0066FF] text-white shadow-[0_8px_20px_rgba(0,102,255,0.25)]" 
+                        : "bg-[#0066FF]/10 text-[#0066FF] border border-[#0066FF]/20"
                     }`}>
                       <Icon className="w-6 h-6" />
                     </div>
                     
-                    <h3 className="font-display text-[20px] font-bold text-slate-800 mb-4 tracking-tight">
+                    <h3 className="font-display text-[20px] font-bold text-[#101828] mb-4 tracking-tight">
                       {card.title}
                     </h3>
                     
-                    <p className="font-sans text-[14px] text-slate-500 leading-[1.65] font-normal">
+                    <p className="font-sans text-[14px] text-[#667085] leading-[1.65] font-normal">
                       {card.description}
                     </p>
                   </>

@@ -24,102 +24,28 @@ export interface MasonryGalleryProps {
 interface CardProps {
   item: MasonryItem;
   index: number;
-  containerRef: React.RefObject<HTMLDivElement | null>;
-  scrollX: number;
-  containerWidth: number;
   onItemClick?: (item: MasonryItem) => void;
 }
 
 const GalleryCard: React.FC<CardProps> = ({
   item,
   index,
-  containerRef,
-  scrollX,
-  containerWidth,
   onItemClick,
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [transformStyles, setTransformStyles] = useState({
-    rotate: 0,
-    translateY: 0,
-    scale: 1,
-    zIndex: 1,
-  });
-
-  useEffect(() => {
-    const card = cardRef.current;
-    const container = containerRef.current;
-    if (!card || !container) return;
-
-    const cardRect = card.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    // Calculate center positions
-    const cardCenter = cardRect.left + cardRect.width / 2;
-    const containerCenter = containerRect.left + containerRect.width / 2;
-
-    const diff = cardCenter - containerCenter;
-    // Normalize distance relative to half the container width
-    const normalizedDistance = Math.min(Math.max(diff / (containerRect.width / 2 || 1), -2), 2);
-
-    // Subtle curved rotation
-    const maxRotation = 14;
-    const rotation = normalizedDistance * maxRotation;
-
-    // Smile shape (parabolic curve upwards for outer cards)
-    const maxTranslateY = 24; // positive is down, negative is up
-    // We want a standard smile: center is lowest (0), outer sides are curved upwards (negative translateY)
-    const translateY = -Math.pow(Math.abs(normalizedDistance), 1.6) * maxTranslateY;
-
-    // Center card feels slightly more prominent
-    const scale = 1 - Math.abs(normalizedDistance) * 0.05;
-    
-    // Custom stacking: center card on top, edges layered underneath
-    const zIndex = Math.round((2 - Math.abs(normalizedDistance)) * 100);
-
-    setTransformStyles({
-      rotate: rotation,
-      translateY: translateY,
-      scale: scale,
-      zIndex: zIndex,
-    });
-  }, [scrollX, containerWidth, containerRef]);
-
   return (
-    <motion.div
-      ref={cardRef}
-      className="shrink-0 mx-[-6px] sm:mx-[-8px] md:mx-[-10px] select-none"
-      style={{
-        zIndex: transformStyles.zIndex,
-        rotate: transformStyles.rotate,
-        y: transformStyles.translateY,
-        scale: transformStyles.scale,
-      }}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{
-        opacity: 1,
-        transition: {
-          duration: 0.8,
-          delay: (index % 6) * 0.08,
-          ease: [0.16, 1, 0.3, 1],
-        },
-      }}
-      viewport={{ once: true, margin: "-20px" }}
-      whileHover={{
-        y: transformStyles.translateY - 14,
-        scale: transformStyles.scale * 1.06,
-        zIndex: transformStyles.zIndex + 200,
-        transition: { duration: 0.3, ease: [0.25, 1, 0.5, 1] }
-      }}
+    <div
+      className="gallery-card-item shrink-0 mx-[-6px] sm:mx-[-8px] md:mx-[-10px] select-none will-change-transform"
+      style={{ zIndex: 1 }}
     >
       <div
         onClick={() => onItemClick && onItemClick(item)}
-        className="relative w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] aspect-[3/4] rounded-[22px] overflow-hidden shadow-[0_12px_32px_-4px_rgba(15,23,42,0.12)] cursor-pointer group bg-slate-100 border-0"
+        className="relative w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] aspect-[3/4] rounded-[22px] overflow-hidden shadow-[0_12px_32px_-4px_rgba(15,23,42,0.12)] cursor-pointer group bg-slate-100 border-0 transition-transform duration-300 hover:scale-105"
       >
         <img
           src={item.img}
           alt={item.alt || item.title}
           loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.98] contrast-[1.02] saturate-[0.92]"
         />
@@ -131,7 +57,7 @@ const GalleryCard: React.FC<CardProps> = ({
         {/* Outer Micro Border Highlight */}
         <div className="absolute inset-0 rounded-[22px] border border-white/10 pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -141,8 +67,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
   onItemClick,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollX, setScrollX] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(1200);
   const [isHovered, setIsHovered] = useState(false);
 
   // Quadruple items array to guarantee a seamless, endless loop with perfect wrap-around margins
@@ -155,13 +79,27 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const updateDimensions = () => {
-      setContainerWidth(container.clientWidth);
-    };
+    const updateCardTransforms = () => {
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      const halfWidth = containerRect.width / 2 || 1;
 
-    updateDimensions();
-    const resizeObserver = new ResizeObserver(updateDimensions);
-    resizeObserver.observe(container);
+      const cardElements = container.querySelectorAll<HTMLElement>('.gallery-card-item');
+      cardElements.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const diff = cardCenter - containerCenter;
+        const normalizedDistance = Math.min(Math.max(diff / halfWidth, -2), 2);
+
+        const rotation = normalizedDistance * 14;
+        const translateY = -Math.pow(Math.abs(normalizedDistance), 1.6) * 24;
+        const scale = 1 - Math.abs(normalizedDistance) * 0.05;
+        const zIndex = Math.round((2 - Math.abs(normalizedDistance)) * 100);
+
+        card.style.transform = `translateY(${translateY}px) rotate(${rotation}deg) scale(${scale})`;
+        card.style.zIndex = `${zIndex}`;
+      });
+    };
 
     const handleScroll = () => {
       const sLeft = container.scrollLeft;
@@ -174,7 +112,7 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
         container.scrollLeft = sLeft - singleSetWidth * 2;
       }
 
-      setScrollX(container.scrollLeft);
+      updateCardTransforms();
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
@@ -183,12 +121,11 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
     const timer = setTimeout(() => {
       const singleSetWidth = container.scrollWidth / 4;
       container.scrollLeft = singleSetWidth * 1.5;
-      setScrollX(container.scrollLeft);
+      updateCardTransforms();
     }, 150);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
-      resizeObserver.disconnect();
       clearTimeout(timer);
     };
   }, [duplicatedItems]);
@@ -238,9 +175,6 @@ export const MasonryGallery: React.FC<MasonryGalleryProps> = ({
             key={`${item.id}-${index}`}
             item={item}
             index={index}
-            containerRef={containerRef}
-            scrollX={scrollX}
-            containerWidth={containerWidth}
             onItemClick={onItemClick}
           />
         ))}
