@@ -13,10 +13,24 @@ export default defineConfig(() => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+    },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          drilling: path.resolve(__dirname, 'drilling/index.html'),
+          foodBeverage: path.resolve(__dirname, 'food-beverage/index.html'),
+          agriculture: path.resolve(__dirname, 'agriculture/index.html'),
+          refineries: path.resolve(__dirname, 'refineries/index.html'),
+          coolingTowers: path.resolve(__dirname, 'cooling-towers/index.html'),
+          wastewater: path.resolve(__dirname, 'wastewater/index.html'),
+          generalIndustrial: path.resolve(__dirname, 'general-industrial/index.html'),
+          capitalAnalysis: path.resolve(__dirname, 'capital-analysis/index.html'),
+          clearance: path.resolve(__dirname, 'clearance/index.html'),
+        },
+      },
     },
   };
 });

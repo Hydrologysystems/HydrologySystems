@@ -1,6 +1,6 @@
 {
   "name": "Remix: Hydrology Systems",
-  "description": "On-site automated caustic soda generation platform for enterprise wastewater treatment and pH control.",
+  "description": "Eliminate bulk caustic soda and soda ash storage. Hydrology Systems manufactures automated, on-site pH neutralization skids for industrial wastewater and cooling towers.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
