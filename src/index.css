@@ -12,36 +12,47 @@ body {
 }
 
 :root {
-  /* Colors */
-  --color-bg-base: #070708; /* Custom color scheme: Dark background */
+  /* Royal Blue, Deep Black & White Theme */
+  --color-royal-blue: #0066FF;
+  --color-royal-blue-hover: #0052cc;
+  --color-royal-blue-active: #0047b3;
+  --color-deep-black: #080B12;
+  --color-white: #FFFFFF;
+  --color-light-neutral: #F4F6FA;
+  --color-dark-text: #101828;
+  --color-muted-text: #667085;
+  --color-border: #DCE2EB;
+
+  --color-bg-base: #080B12;
   --color-bg-card: rgba(255, 255, 255, 0.05);
-  --color-text-base: #f1f5f9;
-  --color-text-muted: #94a3b8;
-  --color-text-dark: #0f172a;
+  --color-text-base: #FFFFFF;
+  --color-text-muted: #667085;
+  --color-text-dark: #101828;
 
-  --color-primary-50: #f0fdfa;
-  --color-primary-100: #ccfbf1;
-  --color-primary-200: #99f6e4;
-  --color-primary-300: #5eead4;
-  --color-primary-400: #2dd4bf;
-  --color-primary-500: #14b8a6;
-  --color-primary-600: #0d9488;
-  --color-primary-700: #0f766e;
-  --color-primary-800: #115e59;
-  --color-primary-900: #134e4a;
-  --color-primary-950: #042f2e;
+  /* Primary mapped to Royal Blue #0066FF */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #0066FF;
+  --color-primary-600: #0052cc;
+  --color-primary-700: #0047b3;
+  --color-primary-800: #003d99;
+  --color-primary-900: #002e73;
+  --color-primary-950: #001a40;
 
-  --color-accent-50: #fff7ed;
-  --color-accent-100: #ffedd5;
-  --color-accent-200: #fed7aa;
-  --color-accent-300: #fdba74;
-  --color-accent-400: #fb923c;
-  --color-accent-500: #ea7704; /* Orange Brand Color */
-  --color-accent-600: #ea580c;
-  --color-accent-700: #c2410c;
-  --color-accent-800: #9a3412;
-  --color-accent-900: #7c2d12;
-  --color-accent-950: #431407;
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-200: #bfdbfe;
+  --color-accent-300: #93c5fd;
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #0066FF;
+  --color-accent-600: #0052cc;
+  --color-accent-700: #0047b3;
+  --color-accent-800: #003d99;
+  --color-accent-900: #002e73;
+  --color-accent-950: #001a40;
 
   /* Font Sizes - FLUID TYPOGRAPHY with clamp() */
   --font-size-xs: clamp(0.7rem, 1.25vw, 0.8rem);
@@ -92,8 +103,15 @@ body {
   --font-display: "Poppins", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-brand-cyan: #22d3ee;
-  --color-brand-teal: #14b8a6;
+  --color-royal-blue: #0066FF;
+  --color-deep-black: #080B12;
+  --color-light-neutral: #F4F6FA;
+  --color-dark-text: #101828;
+  --color-muted-text: #667085;
+  --color-border: #DCE2EB;
+
+  --color-brand-cyan: #38bdf8;
+  --color-brand-teal: #0066FF;
   --color-brand-emerald: #10b981;
 
   /* Map brand colors to CSS variables */
@@ -151,11 +169,11 @@ body {
 }
 
 @utility glow-teal {
-  box-shadow: 0 0 15px rgba(20, 184, 166, 0.5);
+  box-shadow: 0 0 15px rgba(0, 102, 255, 0.45);
 }
 
 @utility glow-active {
-  filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.8));
+  filter: drop-shadow(0 0 4px rgba(0, 102, 255, 0.8));
 }
 
 .liquid-glass {
@@ -246,31 +264,29 @@ button[class*="Xb99Ic"]:not(.google-calendar-wrapper *):not(.google-calendar-ove
   visibility: hidden !important;
 }
 
-/* Make Google Calendar wrappers completely transparent and fill the entire CTA button area */
+/* Make Google Calendar wrappers completely transparent and non-blocking */
 .google-calendar-wrapper {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   opacity: 0 !important;
-  z-index: 50 !important;
-  pointer-events: auto !important;
-  cursor: pointer !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
   overflow: hidden !important;
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* Ensure the inner container also fills the wrapper completely */
+/* Ensure the inner container is also non-blocking */
 .google-calendar-overlay-container {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   opacity: 0 !important;
-  z-index: 50 !important;
-  pointer-events: auto !important;
-  cursor: pointer !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
   overflow: hidden !important;
   background: transparent !important;
   background-color: transparent !important;
